@@ -1,0 +1,13 @@
+:productid: [productId]
+= Brands
+
+== Logic
+=== Activation
+. Service should be activated by _/activity/activate/{productId}_ endpoint
+. By productId service should get product brand from _ProductConfigServer_ and save it to _DB_
+
+=== Get brand
+. Service should return product brand by _/activity/products/{productId}_ endpoint
+
+== Integrations
+_ProductConfigServer_ - https://dummyjson.com/products/{productId}

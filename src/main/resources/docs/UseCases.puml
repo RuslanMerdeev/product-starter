@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor Client
+rectangle "Production System" {
+    usecase "Submit Production Request" as UC1
+    usecase "Validate Request" as UC2
+    usecase "Initiate Production" as UC3
+    usecase "Provide Progress Updates" as UC4
+    usecase "Notify Completion" as UC5
+    usecase "Arrange Delivery/Pickup" as UC6
+}
+
+Client -> UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 --> UC4 : Optional
+UC4 --> UC5
+UC5 --> UC6
+UC6 --> Client
+
+@enduml

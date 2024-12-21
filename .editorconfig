@@ -1,0 +1,5 @@
+root = true
+
+[{*.kt,*.kts}]
+ktlint_code_style = official
+ktlint_standard_no-empty-first-line-in-class-body = disabled
