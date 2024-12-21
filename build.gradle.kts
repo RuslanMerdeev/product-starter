@@ -19,10 +19,10 @@ repositories {
 dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.flowable:flowable-spring-boot-starter:6.8.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.h2database:h2:2.3.232")
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,7 +1,7 @@
 package com.example.productstarter.delegate
 
+import com.example.productstarter.api.client.ProductRepository
 import com.example.productstarter.model.ProductEntity
-import com.example.productstarter.repository.ProductRepository
 import com.example.productstarter.variable.BRAND
 import org.flowable.engine.delegate.DelegateExecution
 import org.flowable.engine.delegate.JavaDelegate
