@@ -10,5 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 class IntegrationConfiguration {
 
     @MockBean lateinit var productConfigClient: ProductConfigClient
+
     @MockBean lateinit var productRepository: ProductRepository
 }
