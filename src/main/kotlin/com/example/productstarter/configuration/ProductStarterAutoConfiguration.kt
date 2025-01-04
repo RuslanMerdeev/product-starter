@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @Suppress("unused")
-class AutoConfiguration {
+class ProductStarterAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
