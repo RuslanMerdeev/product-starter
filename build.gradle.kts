@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.example"
-version = "0.0.6"
+version = "0.0.8"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -38,6 +38,39 @@ tasks.withType<Test> {
     dependsOn("ktlintFormat")
 }
 
+
+tasks.register("incrementVersion") {
+    doLast {
+        val currentVersion = project.version.toString()
+        val parts = currentVersion.split(".")
+        val newVersion = "${parts[0]}.${parts[1]}.${parts[2].toInt() + 1}"
+
+        println("Incrementing version: $currentVersion -> $newVersion")
+
+        // Обновляем версию в build.gradle.kts
+        val buildFile = file("build.gradle.kts")
+        var content = buildFile.readText()
+        content = content.replace(
+            "version = \"$currentVersion\"",
+            "version = \"$newVersion\""
+        )
+        buildFile.writeText(content)
+
+        val result = providers.exec {
+            commandLine("git", "tag", newVersion)
+        }.result
+
+        if (result.get().exitValue == 0) {
+            println("✅ Git tag created: $newVersion")
+        } else {
+            println("❌ Failed to create Git tag")
+        }
+
+        println("✅ Version updated to: $newVersion")
+        println("⚠️  Don't forget to push tags: git push --tags")
+    }
+}
+
 publishing {
     repositories {
         maven {
@@ -54,4 +87,8 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+tasks.named("publish") {
+    dependsOn("incrementVersion")
 }
