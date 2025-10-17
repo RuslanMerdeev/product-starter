@@ -9,8 +9,16 @@ plugins {
     id("maven-publish")
 }
 
+tasks.named("bootJar") {
+    enabled = false
+}
+
+tasks.named("jar") {
+    enabled = true
+}
+
 group = "com.example"
-version = "0.0.6"
+version = "0.0.8"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
