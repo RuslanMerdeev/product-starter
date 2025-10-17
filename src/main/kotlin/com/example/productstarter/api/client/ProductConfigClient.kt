@@ -1,8 +1,8 @@
 package com.example.productstarter.api.client
 
-import com.example.productstarter.api.model.ProductResponse
+import com.example.productstarter.api.dto.ProductDto
 
 interface ProductConfigClient {
 
-    fun fetchBy(productId: String): ProductResponse
+    fun fetchBy(productId: String): ProductDto
 }
