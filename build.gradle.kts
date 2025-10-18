@@ -18,7 +18,7 @@ tasks.named("jar") {
 }
 
 group = "com.example"
-version = "0.0.8"
+//version = "0.0.8"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
