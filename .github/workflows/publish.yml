@@ -27,9 +27,27 @@ jobs:
           LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "Latest tag: $LATEST_TAG"
           
-          # Убираем 'v' и инкрементируем patch версию
+          # Убираем 'v'
           VERSION=${LATEST_TAG#v}
-          NEXT_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+          
+          # Определяем тип инкремента на основе commit message
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+          
+          if [[ "$COMMIT_MSG" == *"major:"* ]] || [[ "$COMMIT_MSG" == *"BREAKING CHANGE:"* ]]; then
+            # Инкремент major версии (1.2.3 -> 2.0.0)
+            NEXT_VERSION=$(echo $VERSION | awk -F. '{$1 = $1 + 1; $2 = 0; $3 = 0;} 1' | sed 's/ /./g')
+            echo "Incrementing MAJOR version"
+          elif [[ "$COMMIT_MSG" == *"feat:"* ]] || [[ "$COMMIT_MSG" == *"feature:"* ]]; then
+            # Инкремент minor версии (1.2.3 -> 1.3.0)
+            NEXT_VERSION=$(echo $VERSION | awk -F. '{$2 = $2 + 1; $3 = 0;} 1' | sed 's/ /./g')
+            echo "Incrementing MINOR version"
+          else
+            # Инкремент patch версии (1.2.3 -> 1.2.4)
+            NEXT_VERSION=$(echo $VERSION | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+            echo "Incrementing PATCH version"
+          fi
+          
           echo "Next version: $NEXT_VERSION"
           echo "version=$NEXT_VERSION" >> $GITHUB_OUTPUT
 
