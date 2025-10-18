@@ -52,7 +52,7 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/RuslanMerdeev/product-starter")
             credentials {
-                username = "RuslanMerdeev"
+                username = "ruslanmerdeev"
                 password = System.getenv("PUBLISH_TOKEN")
             }
         }
