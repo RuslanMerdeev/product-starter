@@ -25,4 +25,4 @@ jobs:
           git push
         env:
           GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}

@@ -78,7 +78,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/RuslanMerdeev/product-starter")
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR") ?: ""
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN") ?: ""
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("PUBLISH_TOKEN") ?: ""
             }
         }
     }
